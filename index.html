@@ -1,40 +1,993 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Planificador de culto</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
 
-    header {
-      background: linear-gradient(135deg, #6a5acd, #4b3dbd);
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+<meta charset="UTF-8">
 
-    .container {
-      padding: 15px;
-    }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+<title>Worship Planner</title>
 
-    h2 {
-      margin: 0 0 10px;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:#F4F7FB;
+
+color:#1F2937;
+
+}
+
+/* ---------- HEADER ---------- */
+
+header{
+
+background:linear-gradient(135deg,#1E3A8A,#2563EB);
+
+color:white;
+
+padding:45px 20px;
+
+text-align:center;
+
+box-shadow:0 5px 18px rgba(0,0,0,.18);
+
+}
+
+header h1{
+
+font-size:34px;
+
+font-weight:700;
+
+}
+
+header p{
+
+margin-top:8px;
+
+opacity:.95;
+
+}
+
+header .verse{
+
+margin-top:18px;
+
+font-size:15px;
+
+font-style:italic;
+
+line-height:24px;
+
+}
+
+/* ---------- MENU ---------- */
+
+nav{
+
+position:sticky;
+
+top:0;
+
+z-index:999;
+
+background:white;
+
+display:flex;
+
+justify-content:space-around;
+
+padding:14px;
+
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+}
+
+nav a{
+
+text-decoration:none;
+
+color:#334155;
+
+font-weight:600;
+
+font-size:14px;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#2563EB;
+
+}
+
+/* ---------- CONTAINER ---------- */
+
+.container{
+
+max-width:900px;
+
+margin:auto;
+
+padding:22px;
+
+}
+
+/* ---------- CARDS ---------- */
+
+.card{
+
+background:white;
+
+border-radius:18px;
+
+padding:22px;
+
+margin-bottom:22px;
+
+box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+transition:.25s;
+
+}
+
+.card:hover{
+
+transform:translateY(-3px);
+
+}
+
+.card h2{
+
+color:#1E3A8A;
+
+margin-bottom:10px;
+
+}
+
+/* ---------- HOME ---------- */
+
+.home{
+
+text-align:center;
+
+}
+
+.home h2{
+
+font-size:30px;
+
+margin-bottom:12px;
+
+}
+
+.home p{
+
+color:#64748B;
+
+line-height:28px;
+
+}
+
+/* ---------- NEXT SERVICE ---------- */
+
+.next{
+
+background:linear-gradient(135deg,#2563EB,#1E40AF);
+
+color:white;
+
+}
+
+.next h2{
+
+color:white;
+
+}
+
+.badge{
+
+display:inline-block;
+
+margin-top:12px;
+
+background:white;
+
+color:#1E3A8A;
+
+padding:8px 18px;
+
+border-radius:50px;
+
+font-weight:bold;
+
+}
+
+/* ---------- BUTTON ---------- */
+
+.button{
+
+display:inline-block;
+
+margin-top:18px;
+
+padding:13px 22px;
+
+background:white;
+
+color:#2563EB;
+
+border-radius:12px;
+
+text-decoration:none;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.button:hover{
+
+background:#EEF4FF;
+
+}
+
+/* ---------- QUICK MENU ---------- */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:16px;
+
+margin-top:25px;
+
+}
+
+.grid .item{
+
+background:white;
+
+padding:22px;
+
+border-radius:16px;
+
+text-align:center;
+
+box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+transition:.25s;
+
+cursor:pointer;
+
+}
+
+.grid .item:hover{
+
+transform:scale(1.03);
+
+}
+
+.grid span{
+
+font-size:36px;
+
+display:block;
+
+margin-bottom:10px;
+
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media(max-width:700px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+header h1{
+
+font-size:28px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Worship Planner</h1>
+
+<p>Ministerio de Alabanza</p>
+
+<div class="verse">
+
+"¡Todo lo que respira alabe a Jehová! Aleluya."
+
+<br>
+
+Salmo 150:6
+
+</div>
+
+</header>
+
+<nav>
+
+<a href="#inicio">🏠 Inicio</a>
+
+<a href="#cultos">🎵 Cultos</a>
+
+<a href="#actividades">📅 Actividades</a>
+
+<a href="#recursos">📚 Recursos</a>
+
+</nav>
+
+<div class="container">
+
+<section id="inicio">
+
+<div class="card home">
+
+<h2>Bienvenido</h2>
+
+<p>
+
+Este espacio fue diseñado para mantener organizada la planificación del Ministerio de Alabanza.
+
+Aquí encontrarás los cultos programados, canciones por practicar, actividades y recursos del ministerio.
+
+</p>
+
+</div>
+
+<div class="card next">
+
+<h2>⭐ Próximo Culto</h2>
+
+<h3>Jueves • 30 Julio 2026</h3>
+
+<br>
+
+<p><strong>Director:</strong> Stephanie</p>
+
+<p><strong>Tono General:</strong> G</p>
+
+<p><strong>Canciones:</strong> 5</p>
+
+<div class="badge">
+
+Prepararse con anticipación
+
+</div>
+
+<a class="button" href="#cultos">
+
+Ver planificación
+
+</a>
+
+</div>
+
+<div class="grid">
+
+<div class="item">
+
+<span>🎵</span>
+
+Planificación
+
+</div>
+
+<div class="item">
+
+<span>🎼</span>
+
+Canciones por practicar
+
+</div>
+
+<div class="item">
+
+<span>📅</span>
+
+Actividades
+
+</div>
+
+<div class="item">
+
+<span>📚</span>
+
+Recursos
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTINÚA EN LA PARTE 2 -->
+
+<!-- ========================= -->
+<!--        CULTOS             -->
+<!-- ========================= -->
+<br>
+<section id="cultos">
+
+<div class="card">
+
+<h2>🎵 Planificación de Cultos</h2>
+
+<p style="color:#64748B;">
+Consulta la planificación de cada servicio.
+Actualizada constantemente por el director del ministerio.
+</p>
+
+</div>
+
+
+<!-- JUEVES -->
+
+<div class="card">
+
+<div style="display:flex;justify-content:space-between;align-items:center;">
+
+<h2>📅 Jueves • 30 Julio 2026</h2>
+
+<span style="background:#DBEAFE;color:#1E3A8A;padding:8px 14px;border-radius:20px;font-weight:600;">
+Servicio
+</span>
+
+</div>
+
+<hr style="margin:18px 0;border:none;border-top:1px solid #E5E7EB;">
+
+<p><strong>👤 Director:</strong> Stephanie</p>
+
+<p><strong>🎼 Tono:</strong> G</p>
+
+<br>
+
+<h3 style="color:#2563EB;">⚡ Alabanza</h3>
+
+<ul style="line-height:34px;">
+
+<li>Hay libertad</li>
+
+<li>Libre soy</li>
+
+<li>A danzar</li>
+
+
+</ul>
+
+<br>
+
+<h3 style="color:#2563EB;">🙏 Adoración</h3>
+
+<ul style="line-height:34px;">
+
+<li>Hermoso nombre</li>
+
+</ul>
+
+</div>
+
+
+<!-- DOMINGO -->
+
+<div class="card">
+
+<div style="display:flex;justify-content:space-between;align-items:center;">
+
+<h2>📅 Domingo • 2 Agosto 2026</h2>
+
+<span style="background:#DCFCE7;color:#166534;padding:8px 14px;border-radius:20px;font-weight:600;">
+Culto Principal
+</span>
+
+</div>
+
+<hr style="margin:18px 0;border:none;border-top:1px solid #E5E7EB;">
+
+<p><strong>👤 Director:</strong> Thays</p>
+
+<p><strong>🎼 Tono:</strong> </p>
+
+<br>
+
+<h3 style="color:#2563EB;">⚡ Alabanza</h3>
+
+<ul style="line-height:34px;">
+
+<li></li>
+
+<li></li>
+
+<li></li>
+
+<li></li>
+
+<li></li>
+
+<li></li>
+
+</ul>
+
+<br>
+
+<h3 style="color:#2563EB;">🙏 Adoración</h3>
+
+<ul style="line-height:34px;">
+
+<li></li>
+
+<li></li>
+
+<li></li>
+
+</ul>
+
+</div>
+
+</section>
+
+<!-- CONTINÚA EN LA PARTE 3 -->
+
+<!-- ========================= -->
+<!--   CANCIONES POR PRACTICAR -->
+<!-- ========================= -->
+
+<section id="practicar">
+
+<div class="card">
+
+<h2>🎼 Canciones por practicar</h2>
+
+<p style="color:#64748B;margin-bottom:20px;">
+Estas son las canciones que el ministerio debe reforzar durante los próximos ensayos.
+</p>
+
+<div style="display:grid;gap:15px;">
+
+<div style="background:#F8FAFC;padding:18px;border-left:5px solid #2563EB;border-radius:12px;">
+<h3>🎵 Way Maker</h3>
+<p>Tono: </p>
+<p>Director: </p>
+</div>
+
+<div style="background:#F8FAFC;padding:18px;border-left:5px solid #22C55E;border-radius:12px;">
+<h3>🎵 Santo por Siempre</h3>
+<p>Tono: </p>
+<p>Director: </p>
+</div>
+
+<div style="background:#F8FAFC;padding:18px;border-left:5px solid #F59E0B;border-radius:12px;">
+<h3>🎵 Cristo, Heme Aquí</h3>
+<p>Tono: </p>
+<p>Director: </p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!--      ACTIVIDADES          -->
+<!-- ========================= -->
+
+<section id="actividades">
+
+<div class="card">
+
+<h2>📅 Actividades Ministeriales</h2>
+
+<p style="color:#64748B;margin-bottom:20px;">
+Agenda del Ministerio de Alabanza.
+</p>
+
+<div style="display:grid;gap:18px;">
+
+<div style="background:#EEF4FF;padding:18px;border-radius:14px;">
+
+<h3>🎤 Ensayo General</h3>
+
+<p>📅 Miércoles </p>
+
+<p>🕖 7:00 PM</p>
+
+<p>📅 Viernes </p>
+
+<p>🕖 7:00 PM</p>
+
+</div>
+
+<div style="background:#ECFDF5;padding:18px;border-radius:14px;">
+
+<h3>🙏 Ayuno Ministerial</h3>
+
+<p>📅 Sábado 1 Agosto</p>
+
+<p>🕘 8:00 AM - 12:00 P.M</p>
+
+</div>
+
+<div style="background:#FEFCE8;padding:18px;border-radius:14px;">
+
+<h3>🎉 Convivio</h3>
+
+<p>📅 Domingo 2 Agosto</p>
+
+<p>Después del servicio.</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!--        RECURSOS           -->
+<!-- ========================= -->
+
+<section id="recursos">
+
+<div class="card">
+
+<h2>📚 Recursos</h2>
+
+<p style="color:#64748B;margin-bottom:20px;">
+Accesos rápidos para el ministerio.
+</p>
+
+<div class="grid">
+
+<div class="item">
+
+<span>🎹</span>
+
+Tonos
+
+</div>
+
+<div class="item">
+
+<span>📄</span>
+
+PDF
+
+</div>
+
+<div class="item">
+
+<span>▶️</span>
+
+YouTube
+
+</div>
+
+<div class="item">
+
+<span>☁️</span>
+
+Google Drive
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!--     VERSÍCULO DEL MES     -->
+<!-- ========================= -->
+
+<section>
+
+<div class="card" style="background:linear-gradient(135deg,#1E3A8A,#2563EB);color:white;text-align:center;">
+
+<h2 style="color:white;">📖 Versículo del Mes</h2>
+
+<p style="margin-top:20px;font-size:18px;line-height:34px;">
+
+"Servid a Jehová con alegría; <br>
+
+Venid ante su presencia con regocijo."
+
+</p>
+
+<br>
+
+<strong>Salmo 100:2</strong>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!--        FOOTER             -->
+<!-- ========================= -->
+
+<footer style="text-align:center;padding:40px 20px;color:#64748B;">
+
+<h3>🎵 Worship Planner</h3>
+
+<p>Ministerio de Alabanza</p>
+
+<p>Iglesia Cuadrangular</p>
+
+<br>
+
+<p>Versión 2.0</p>
+
+<p>Última actualización: Julio 2026</p>
+
+</footer>
+
+<!-- CONTINÚA EN LA PARTE 4 -->
+
+<!-- ========================= -->
+<!--   BOTÓN VOLVER ARRIBA     -->
+<!-- ========================= -->
+
+<a href="#inicio" id="topButton">⬆</a>
+
+<style>
+
+#topButton{
+
+position:fixed;
+
+right:20px;
+
+bottom:20px;
+
+width:55px;
+
+height:55px;
+
+border-radius:50%;
+
+background:#2563EB;
+
+color:white;
+
+text-decoration:none;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:24px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+transition:.3s;
+
+opacity:0;
+
+pointer-events:none;
+
+z-index:9999;
+
+}
+
+#topButton.show{
+
+opacity:1;
+
+pointer-events:auto;
+
+}
+
+#topButton:hover{
+
+transform:scale(1.08);
+
+background:#1E40AF;
+
+}
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(35px);
+
+transition:.6s;
+
+}
+
+.reveal.active{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+nav a.active{
+
+color:#2563EB;
+
+border-bottom:3px solid #2563EB;
+
+padding-bottom:6px;
+
+}
+
+.card{
+
+overflow:hidden;
+
+}
+
+.card::before{
+
+content:"";
+
+display:block;
+
+height:4px;
+
+background:linear-gradient(90deg,#2563EB,#60A5FA);
+
+margin:-22px -22px 18px -22px;
+
+}
+
+footer{
+
+background:#0F172A;
+
+color:white;
+
+margin-top:50px;
+
+}
+
+footer h3{
+
+margin-bottom:10px;
+
+}
+
+</style>
+
+<script>
+
+/* Animación */
+
+const elementos=document.querySelectorAll(".card");
+
+function aparecer(){
+
+elementos.forEach(el=>{
+
+const pos=el.getBoundingClientRect().top;
+
+const pantalla=window.innerHeight-80;
+
+if(pos<pantalla){
+
+el.classList.add("active");
+
+}
+
+});
+
+}
+
+elementos.forEach(el=>el.classList.add("reveal"));
+
+window.addEventListener("scroll",aparecer);
+
+aparecer();
+
+/* Botón subir */
+
+const topButton=document.getElementById("topButton");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>250){
+
+topButton.classList.add("show");
+
+}else{
+
+topButton.classList.remove("show");
+
+}
+
+});
+
+/* Menú activo */
+
+const sections=document.querySelectorAll("section");
+
+const navLinks=document.querySelectorAll("nav a");
+
+window.addEventListener("scroll",()=>{
+
+let current="";
+
+sections.forEach(section=>{
+
+const top=section.offsetTop-120;
+
+const height=section.offsetHeight;
+
+if(scrollY>=top){
+
+current=section.getAttribute("id");
+
+}
+
+});
+
+navLinks.forEach(link=>{
+
+link.classList.remove("active");
+
+if(link.getAttribute("href")==="#"+current){
+
+link.classList.add("active");
+
+}
+
+});
+
+});
+
+</script>
+
+</body>
+
+</html>
     .cancion {
       padding: 8px;
       border-bottom: 1px solid #eee;
